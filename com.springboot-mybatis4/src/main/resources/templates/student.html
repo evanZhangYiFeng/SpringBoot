@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>学生后台管理系统</title>
+<link rel="stylesheet" href="./js/css/layui.css">
+<link rel="stylesheet" href="./js/css/modules/layer/default/layer.css">
+<link rel="stylesheet" type="text/css" href="./css/reponse.css">
+<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./js/jquery.basictable.min.js"></script>
+<script type="text/javascript" src="./js/reponsetable.min.js"></script>
+<script type="text/javascript" src="./js/lay/modules/layer.js"></script>
+<script type="text/javascript" src="./js/layui.js"></script>
+<style type="text/css">
+	.alertceng{
+		background: #FFFFFF;
+		padding: 10px;
+		display: none;
+	}
+	.alertceng span.title{
+		margin-right: 10px;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<h1 align="center">学生信息管理系统</h1>
+	</div>
+	<div style="margin-bottom:10px">
+		<button type="button" class="layui-btn layui-btn-normal" onclick="openStudentAdd();">新增</button>
+		<button id="editBtn" class="layui-btn layui-btn-warm" onclick="editStudentMsg()">编辑</button>
+		<button id="deleteBtn" class="layui-btn " onclick="deleteMsg(this)">删除</button>
+	</div>
+	<div>	
+		<table id="table" class="reponsetable">
+			<thead>
+				<tr>
+					<th style="width:5%">选择框</th>
+					<th style="width:5%">序号</th>
+					<th style="width:5%">姓名</th>
+					<th style="width:5%">数学</th>
+					<th style="width:5%">语文</th>
+					<th style="width:5%">英语</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr id="tr" th:each="student:${stu}">             <!-- 使用Thymeleaf语法循环解析controller传来的数据 -->
+					<td><input name="evan" type="checkbox"></td>
+					<td name="num" th:text="${studentStat.index+1}"></td>
+					<td name="name" th:text="${student.name}"></td>
+					<td name="math" th:text="${student.math}"></td>
+					<td name="language" th:text="${student.language}"></td>
+					<td name="chinese" th:text="${student.chinese}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- layui对话框内容格式 -->
+	<div id="editcontent" class="alertceng layui-layer-wrap">
+		<p><span class="title">姓名:</span><input type="text" id="Name" class="layui-input"/></p>
+		<p><span class="title">数学:</span><input type="text" id="Math" class="layui-input"/></p>
+		<p><span class="title">英语:</span><input type="text" id="Language" class="layui-input"/></p>
+		<p><span class="title">语文:</span><input type="text" id="Chinese" class="layui-input"/></p>
+	</div>
+	<script th:inline="javascript">
+		//添加学生信息
+		function openStudentAdd(){
+			layer.open({            //layui打开对话框
+				type:1,
+				title:'学生信息',
+				closeBtn:1,
+				area: '350px',
+				skin: '#FFFAF0',
+				shadeClose: true,
+				content: $('#editcontent'),      //内容指定为对话框
+				btn: ['保存','关闭'],
+				btn1:function(index,layero){
+					var name = $("#Name").val();
+					var math = $("#Math").val();
+					var language = $("#Language").val();
+					var chinese = $("#Chinese").val();
+					var studentObj={
+						"name":name,
+						"math":math,
+						"language":language,
+						"chinese":chinese
+					};
+					$.ajax({
+						url :'insertStudent',
+						type: "post",                          //type类型与controller层的restful风格API接口类型一致
+						datatype : "json",
+						async:true,
+						contentType : "application/json",
+						data: JSON.stringify(studentObj),
+						success : function(data){
+							layer.close(index);
+							layer.alert(data+"添加成功");
+							reponse.addtr(studentObj,"table");	   
+						},
+						error : function(data) {
+							layer.alert('添加失败');
+						}
+					});
+				},btn2:function(index,layero){
+					layer.close(index);
+				},
+				end: function(){     //重新加载页面
+					location.reload();
+				}
+			})
+			
+		}
+		
+		//编辑学生信息
+		function editStudentMsg(){
+			var dataArr = getSelectRow();       //获得当前选中行的信息内容
+			if(dataArr != null && dataArr != ""){       //判断是否选择一行进行编辑
+				var mingzi = dataArr[1];
+				var shuxue = dataArr[2];
+				var yingyu = dataArr[3];
+				var yuwen = dataArr[4];
+				//解析数据并填充到相应的input框内，将名字栏设置不可更改
+				$("#Name").val(mingzi);
+				var obj = document.getElementById("Name");
+				obj.setAttribute("readonly",true);
+				obj.style.backgroundColor="#FFFAFA";
+				$("#Math").val(shuxue);
+				$("#Language").val(yingyu);
+				$("#Chinese").val(yuwen);
+				layer.open({
+					type:1,
+					title:'学生信息',
+					closeBtn:1,
+					area: '350px',
+					skin: '#FFFAF0',
+					shadeClose: true,
+					content: $('#editcontent'),
+					btn: ['保存','关闭'],
+					btn1:function(index,layero){
+						var name = $("#Name").val();
+						var math = $("#Math").val();
+						var language = $("#Language").val();
+						var chinese = $("#Chinese").val();
+						var studentObj={
+							"name":name,
+							"math":math,
+							"language":language,
+							"chinese":chinese
+						};
+						$.ajax({
+							url :'studentChange',
+							type: "put",
+							datatype : "json",
+							async:true,
+							contentType : "application/json",
+							data: JSON.stringify(studentObj),
+							success : function(data){
+								layer.close(index);
+								layer.alert("修改成功");
+								//reponse.addtr(studentObj,"table");	
+							},
+							error : function(data) {
+								layer.alert('修改失败');
+							}
+						});
+					},btn2:function(index,layero){
+						layer.close(index);
+					},
+					end: function(){     //重新加载页面
+						location.reload();
+					}
+				})
+			}else{
+				layer.alert("请选中一行!")
+			}
+			
+		}
+		
+		//获得选中行的数据,封装为一个数组返回
+		function getSelectRow(){
+			var check=$("input[name='evan']:checked");   
+			var result;
+			var dataArr=[];
+			//选中的复选框
+			check.each(function(){
+				var row = $(this).parent("td").parent("tr");      //获取当前行
+				var num = row.find("[name=num]").html();
+				var name = row.find("[name='name']").html();
+				var math = row.find("[name='math']").html();
+				var language = row.find("[name='language']").html();
+				var chinese = row.find("[name='chinese']").html();
+				dataArr = [num,name,math,language,chinese];
+				console.log("数组是:"+dataArr);
+				result = dataArr
+			});
+			return result;
+		}
+		
+		//执行删除功能,向后端传送需要删除的信息
+		function deleteMsg(){
+			if(getSelectRow() !=null && getSelectRow() !=""){
+				var name = getSelectRow()[1];
+				var rowNumber = getSelectRow()[0];      
+				var tab = document.getElementById("table");
+				console.log("选中的："+name);
+					//弹框确认
+					layer.confirm('是否确认删除',{btn:['YES','NO']},
+						function(){
+							$.ajax({
+								url :'studentDelete',
+								type: "delete",
+								datatype : "text",
+								async:true,
+								data: name,
+								success : function(data){
+									layer.alert("删除成功");
+									tab.deleteRow(rowNumber);    //根据当前序号删除对应的行
+									location.reload();           //重新加载页面
+								},
+								error : function(data) {
+									layer.alert('删除失败');
+								}
+							})
+						})
+			}else{
+				layer.alert("请选择一行");
+			}
+						
+		} 	
+	</script>
+</body>
+</html>

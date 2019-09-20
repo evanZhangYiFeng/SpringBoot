@@ -1,0 +1,12 @@
+spring:
+   datasource:
+      url: jdbc:oracle:thin:@172.16.0.10:1521:ylorcl
+      username: ftpc_prod
+      password: 123456
+      driver-class-name: oracle.jdbc.OracleDriver
+mybatis:
+   mapper-locations: classpath:mapper/*Mapper.xml
+   type-aliases-package: com.springboot.entity.student
+logging:
+   level:
+      com.springboot.mapper : debug

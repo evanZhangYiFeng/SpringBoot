@@ -1,0 +1,116 @@
+/*
+ * jQuery Basic Table
+ * Author: Jerry Low
+ */
+
+table.bt thead,
+table.bt tbody th {
+	display: none;
+}
+
+table.bt tfoot th,
+table.bt tfoot td,
+table.bt tbody td {
+	border: none;
+	display: block;
+	vertical-align: top;
+}
+
+table.bt tfoot th:before,
+table.bt tfoot td:before,
+table.bt tbody td:before {
+	content: attr(data-th) ": ";
+	font-weight: bold;
+	width: 6.5em;
+	display: inline-block;
+}
+
+table.bt tfoot th.bt-hide,
+table.bt tfoot td.bt-hide,
+table.bt tbody td.bt-hide {
+	display: none;
+}
+
+table.bt tfoot th .bt-content,
+table.bt tfoot td .bt-content,
+table.bt tbody td .bt-content {
+	vertical-align: top;
+}
+
+.reponsetable {
+	padding: 0;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px auto;
+}
+
+th,
+td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #e6e6e6;
+}
+
+.reponsetable thead {
+	background: #f2f2f2;
+}
+
+.reponsetable th,
+.reponsetable td {
+	position: relative;
+	padding: 9px 15px;
+	min-height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+}
+
+.bt-wrapper.active {
+	max-height: 310px;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.yesbei {
+	background: #fcf8e3 !important;
+}
+
+.reponsetable tr:nth-child(even) {
+	background: #f3f3f3;
+}
+
+.btn-container button {
+	margin-bottom: 10px;
+}
+
+.layui-btn {
+	display: inline-block;
+	vertical-align: middle;
+	height: 38px;
+	line-height: 38px;
+	padding: 0 18px;
+	background-color: #009688;
+	color: #fff;
+	white-space: nowrap;
+	text-align: center;
+	font-size: 14px;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.layui-btn-xs {
+	height: 22px;
+	line-height: 22px;
+	padding: 0 5px;
+	font-size: 12px;
+}
+
+.layui-btn-danger {
+	height: 22px;
+	line-height: 22px;
+	padding: 0 5px;
+	font-size: 12px;
+	background-color: red;
+}
