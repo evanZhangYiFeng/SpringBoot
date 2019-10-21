@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Springboot.Vue.Mapper.heroPropertyMapper">
+	<resultMap type="com.Springboot.Vue.entity.heroProperty" id="hero">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="money" column="money" />
+		<result property="attack" column="attack" />
+		<result property="magic" column="magic" />
+		<result property="suck_blood" column="suck_blood" />
+		<result property="magic_blood" column="magic_blood" />
+		<result property="physical_penetration" column="physical_penetration" />
+		<result property="magic_penetration" column="magic_penetration" />
+		<result property="crit" column="crit" />
+		<result property="blood" column="blood" />
+		<result property="armor" column="armor" />
+		<result property="spell" column="spell" />
+		<result property="equip1" column="equip1" />
+		<result property="equip2" column="equip2" />
+		<result property="equip3" column="equip3" />
+		<result property="equip4" column="equip4" />
+		<result property="equip5" column="equip5" />
+		<result property="equip6" column="equip6" />
+		<result property="skill1" column="skill1" />
+		<result property="damage1" column="damage1" />
+		<result property="skill2" column="skill2" />
+		<result property="damage2" column="damage2" />
+		<result property="skill3" column="skill3" />
+		<result property="damage3" column="damage3" />
+		
+	</resultMap>
+	
+    <select id="getAllHero" resultType="com.Springboot.Vue.entity.heroProperty">
+        select * from hero_property
+    </select>
+
+    <insert id="addHero" parameterType="com.Springboot.Vue.entity.heroProperty">
+		insert into hero_property(id, name, money, attack, magic,
+		crit, suck_blood,magic_blood, physical_penetration, magic_penetration,blood,armor,spell,
+		equip1, equip2, equip3, equip4, equip5, equip6, skill1, damage1, skill2, damage2,skill3, damage3
+		) values ( #{id}, #{name}, #{money}, #{attack}, #{magic},
+		#{crit}, #{suck_blood},#{magic_blood},#{physical_penetration},#{magic_penetration},
+		#{blood}, #{armor}, #{spell}, #{equip1}, #{equip2}, #{equip3}, #{equip4}, #{equip5}, #{equip6},
+		#{skill1}, #{damage1}, #{skill2}, #{damage2}, #{skill3}, #{damage3} )
+	</insert>
+	
+	<update id="updateHeroInfo" parameterType="com.Springboot.Vue.entity.heroProperty">
+		update hero_property set
+		money=#{money}, attack=#{attack}, magic=#{magic}, crit=#{crit},
+		suck_blood=#{suck_blood}, magic_blood=#{magic_blood}, 
+		physical_penetration=#{physical_penetration}, magic_penetration=#{magic_penetration},
+		blood=#{blood}, armor=#{armor}, spell=#{spell},
+		equip1=#{equip1}, equip2=#{equip2}, equip3=#{equip3},
+		equip4=#{equip4}, equip5=#{equip5}, equip6=#{equip6},
+		damage1=#{damage1}, damage2=#{damage2}, damage3=#{damage3}
+		where name = #{name}
+	</update>
+	
+</mapper>

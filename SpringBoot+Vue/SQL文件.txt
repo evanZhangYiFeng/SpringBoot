@@ -1,0 +1,71 @@
+--新建学生基础信息表
+create table student(
+       stuId number(10) not null,
+       stuName varchar(20) not null,
+       stuSex number(2) not null,
+       stuEmail varchar(60) not null,
+       stuAddress varchar(80) not null
+)
+
+--英雄联盟出装分类
+create table equipment_type(
+       eqp_id number(10) not null,
+       eqp_type_name varchar(30) not null,
+       eqp_attack_defense number(1) not null
+)   
+
+--英雄物理攻击装
+create table equipment_attack(
+       eqp_type varchar(20) not null,
+       eqp_id number(10) not null,
+       eqp_name varchar(20) not null,
+       eqp_money number(8) not null,    --装备价值
+       eqp_attack number,     --攻击力
+       eqp_magic number,      --法强
+       eqp_crit number,       --暴击率
+       eqp_boolean_compound number(1) not null,             --是否可以升级合成,0:不可合成，1：可以合成
+       eqp_suck_blood number,       --物理吸血
+       eqp_magic_blood number,         --法术吸血
+       eqp_physics_penetration number,      --物理穿透
+       eqp_magic_penetration number     --法术穿透
+)
+
+--英雄联盟防御装
+create table equipment_defense(
+       eqp_type varchar(20) not null,
+       eqp_id number(10) not null,
+       eqp_name varchar(20) not null,
+       eqp_money number(8) not null,    --装备价值
+       eqp_blood number,                --血量
+       eqp_armor number,                --护甲
+       eqp_spell number                --魔抗
+)
+
+--英雄属性表
+create table hero_property(
+       id number(10) not null,
+       name varchar(30) not null,
+       money number not null,            --拥有的金钱
+       attack number,
+       magic number,
+       suck_blood number,               --物理吸血
+       magic_blood number,               --法术吸血
+       physical_penetration number,       --物穿
+       magic_penetration number,          --法穿
+       crit number,                       --暴击
+       blood number,                      --血量
+       armor number,                      --护甲
+       spell number,                      --魔抗
+       equip1 varchar(60),                    --1-6个装备
+       equip2 varchar(60),
+       equip3 varchar(60),
+       equip4 varchar(60),
+       equip5 varchar(60),
+       equip6 varchar(60),
+       skill1 varchar(60),        --1技能描述
+       damage1 number,        --1技能伤害计算值
+       skill2 varchar(60),        --2技能描述
+       damage2 number,        --2技能伤害计算值
+       skill3 varchar(60),        --3技能描述
+       damage3 number         --3技能伤害计算值
+)

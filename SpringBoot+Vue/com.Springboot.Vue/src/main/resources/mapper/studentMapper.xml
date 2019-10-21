@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Springboot.Vue.Mapper.StudentMapper">
+	<resultMap type="com.Springboot.Vue.entity.Student" id="student">
+		<result property="stuId" column="id" />
+		<result property="stuName" column="name" />
+		<result property="stuSex" column="stuSex" />
+		<result property="stuEmail" column="stuEmail" />
+		<result property="stuAddress" column="stuAddress" />
+	</resultMap>
+	
+    <select id="getAllStudent" resultType="com.Springboot.Vue.entity.Student">
+        select t.stuId,t.stuName,t.stuSex,t.stuEmail,t.stuAddress from student t
+    </select>
+    
+    <select id="getStudentById" resultType="com.Springboot.Vue.entity.Student">
+        select stuId, stuName, stuSex, stuEmail, stuAddress from student  where 1=1
+        and stuId = #{id}      
+    </select>
+    
+    <select id="getStudentByName" resultType="com.Springboot.Vue.entity.Student">
+        select stuId, stuName, stuSex, stuEmail, stuAddress from student  where 1=1
+        and stuName = #{idOrStuName}      
+    </select>
+    
+    <insert id="insertStudent" parameterType="java.util.List">
+		insert into student(stuId,stuName,stuSex,stuEmail,stuAddress) 
+		<!-- 使用foreach批量插入 -->
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator="union all">
+			select #{item.stuId}, #{item.stuName}, #{item.stuSex}, #{item.stuEmail}, #{item.stuAddress}
+			from dual
+		</foreach>
+	</insert>
+	
+	<delete id="deleteStudent" parameterType="Integer">
+		delete from student where stuId = #{stuId}
+	</delete>
+	
+	<update id="updateStudent" parameterType="com.Springboot.Vue.entity.Student">
+		update student set stuName=#{stuName}, stuSex=#{stuSex},stuEmail=#{stuEmail},stuAddress=#{stuAddress} 
+		where stuId = #{stuId}
+	</update>
+	
+    
+</mapper>

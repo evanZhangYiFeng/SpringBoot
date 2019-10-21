@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Springboot.Vue.Mapper.eqpTypeMapper">
+	<resultMap type="com.Springboot.Vue.entity.equipmentType" id="eqpType">
+		<result property="eqp_id" column="eqp_id" />
+		<result property="eqp_type_name" column="eqp_type_name" />
+		<result property="eqp_attack_defense" column="eqp_attack_defense" />
+	</resultMap>
+	
+    <select id="getEqpTypes" resultType="com.Springboot.Vue.entity.equipmentType">
+        select eqp_id, eqp_type_name, eqp_attack_defense from equipment_type 
+        where eqp_attack_defense = 1
+    </select>
+    
+    <select id="getEqpTypesDefense" resultType="com.Springboot.Vue.entity.equipmentType">
+    	select eqp_id, eqp_type_name, eqp_attack_defense from equipment_type 
+        where eqp_attack_defense = 2
+    </select>
+
+    <insert id="insertEqpTypes" parameterType="com.Springboot.Vue.entity.equipmentType">
+		insert into equipment_type(eqp_id, eqp_type_name,eqp_attack_defense) values (#{eqp_id}, 
+		#{eqp_type_name}, #{eqp_attack_defense})
+	</insert>
+</mapper>

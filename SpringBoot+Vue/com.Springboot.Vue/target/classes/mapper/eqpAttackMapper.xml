@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Springboot.Vue.Mapper.eqpAttackMapper">
+	<resultMap type="com.Springboot.Vue.entity.equipmentAttack" id="eqpAttack">
+		<result property="eqp_type" column="eqp_type" />
+		<result property="eqp_id" column="eqp_id" />
+		<result property="eqp_name" column="eqp_name" />
+		<result property="eqp_money" column="eqp_money" />
+		<result property="eqp_attack" column="eqp_attack" />
+		<result property="eqp_magic" column="eqp_magic" />
+		<result property="eqp_crit" column="eqp_crit" />
+		<result property="eqp_boolean_compound" column="eqp_boolean_compound" />
+		<result property="eqp_suck_blood" column="eqp_suck_blood" />
+		<result property="eqp_magic_blood" column="eqp_magic_blood" />
+		<result property="eqp_physics_penetration" column="eqp_physics_penetration	" />
+		<result property="eqp_magic_penetration" column="eqp_magic_penetration" />
+	</resultMap>
+	
+    <select id="getAllEquipAttack" resultType="com.Springboot.Vue.entity.equipmentAttack">
+        select eqp_type, eqp_id, eqp_name, eqp_money, eqp_attack, eqp_magic,
+		eqp_crit,eqp_boolean_compound,
+		eqp_suck_blood,eqp_magic_blood,eqp_physics_penetration,eqp_magic_penetration
+        from equipment_attack 
+    </select>
+
+    <insert id="insertEquipAttackInfo" parameterType="com.Springboot.Vue.entity.equipmentAttack">
+		insert into equipment_attack(eqp_type, eqp_id, eqp_name, eqp_money, eqp_attack, eqp_magic,
+		eqp_crit,eqp_boolean_compound,
+		eqp_suck_blood,eqp_magic_blood,eqp_physics_penetration,eqp_magic_penetration
+		) values ( #{eqp_type}, #{eqp_id}, #{eqp_name}, #{eqp_money}, #{eqp_attack}, #{eqp_magic},
+		#{eqp_crit}, #{eqp_boolean_compound},
+		#{eqp_suck_blood},#{eqp_magic_blood},#{eqp_physics_penetration},#{eqp_magic_penetration} )
+	</insert>
+</mapper>

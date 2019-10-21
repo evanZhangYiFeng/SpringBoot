@@ -1,0 +1,5 @@
+com\Springboot\Vue\entity\User.class
+com\Springboot\Vue\controller\UserController.class
+com\Springboot\Vue\application.class
+com\Springboot\Vue\common\JsonResult.class
+com\Springboot\Vue\Mapper\UserMapper.class

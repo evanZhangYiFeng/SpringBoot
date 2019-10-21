@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Springboot.Vue.Mapper.eqpDefenseMapper">
+	<resultMap type="com.Springboot.Vue.entity.equipmentDefense" id="eqpDefense">
+		<result property="eqp_type" column="eqp_type" />
+		<result property="eqp_id" column="eqp_id" />
+		<result property="eqp_name" column="eqp_name" />
+		<result property="eqp_money" column="eqp_money" />
+		<result property="eqp_blood" column="eqp_blood" />
+		<result property="eqp_armor" column="eqp_armor" />
+		<result property="eqp_spell" column="eqp_spell" />
+	</resultMap>
+	
+    <select id="getAllEqpDefense" resultType="com.Springboot.Vue.entity.equipmentDefense">
+        select eqp_type, eqp_id, eqp_name, eqp_money, eqp_blood, eqp_armor,eqp_spell
+        from equipment_defense 
+    </select>
+
+    <insert id="insertEqpDefense" parameterType="com.Springboot.Vue.entity.equipmentDefense">
+		insert into equipment_defense(eqp_type, eqp_id, eqp_name, eqp_money, eqp_blood, eqp_armor,eqp_spell
+		) values ( #{eqp_type}, #{eqp_id}, #{eqp_name}, #{eqp_money}, #{eqp_blood}, #{eqp_armor},
+		#{eqp_spell} )
+	</insert>
+</mapper>

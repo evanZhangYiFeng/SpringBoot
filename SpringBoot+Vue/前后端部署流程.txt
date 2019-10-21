@@ -1,0 +1,19 @@
+前后端部署到服务器过程，使用Nginx作为反向代理，解决跨域问题
+打包Vue项目，运行: npm run build
+Vue项目生成dist文件夹，将文件夹下的static文件夹和index.js复制到Nginx解压目录
+下的html文件夹下
+
+
+以jar的方式运行springboot服务
+选中项目，右击选中 run as Maven clean
+然后选中 run as Maven Install,成功后在target文件夹下生成一个jar包：com.Springboot.Vue.jar
+将这个jar包放到某个目录下
+在cmd下通过 java -jar 命令启动springboot服务：
+以该jar包为例，命令如下：
+java -jar E:/Jar/com.Springboot.Vue.jar
+按下ctrl+c停止该服务
+
+
+启动Nginx服务
+通过dos窗口命令进入Nginx解压目录，运行命令：start nginx
+

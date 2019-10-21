@@ -1,0 +1,14 @@
+spring:
+   datasource:
+      url: jdbc:oracle:thin:@localhost:1521:orcl
+      username: system
+      password: 123456
+      driver-class-name: oracle.jdbc.OracleDriver
+mybatis:
+   mapper-locations: classpath:mapper/*Mapper.xml
+   type-aliases-package: com.Springboot.Vue.entity.User
+logging:
+   level:
+      com.springboot.mapper : debug
+server:
+   port: 8085

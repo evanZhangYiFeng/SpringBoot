@@ -1,0 +1,49 @@
+安装node.js
+下载地址：https://nodejs.org/en/download/
+默认安装即可：
+
+安装npm:
+在nodejs路径下新建两个文件夹："node_global"及"node_cache"
+管理员方式运行cmd,输入以下两个命令：
+npm config set prefix "C:\Program Files\nodejs\node_global"
+npm config set cache "C:\Program Files\nodejs\node_cache"
+配置镜像站：npm config set registry=http://registry.npm.taobao.org
+输入：npm config list 显示所有配置信息
+检查一下镜像站行不行命令1：npm config get registry
+增加环境变量：NODE_PATH   内容：C:\Program Files\nodejs\node_global\node_modules
+测试NPM安装vue.js,命令：npm install vue -g,这里的-g是指安装到global全局目录去
+
+
+安装webpack：
+npm install webpack -g
+
+
+创建一个Vue项目
+进行c盘的program files路径下：cd "c:\program files"
+进入nodejs路径 :cd nodejs
+进入node_global路径 : cd node_global
+创建一个基于webpack的项目：vue init webpack first-vue
+cd first-vue//进入生成的项目文件
+npm run dev //以生产环境启动项目
+打开浏览器，输入 http://localhost:8080 //浏览器登陆验证
+
+
+安装elemenetui
+进入某个项目目录下
+npm i element-ui –S
+
+
+
+
+Nginx安装
+下载Nginx压缩包，解压即可，运行Nginx.exe，nginx的服务即可运行
+cmd进入Nginx安装目录
+运行Nginx服务： start nginx
+重新加载服务：   nginx -s reload
+停止Nginx服务：   nginx-s stop
+
+
+
+Vue引入echarts
+npm install echarts -save
+

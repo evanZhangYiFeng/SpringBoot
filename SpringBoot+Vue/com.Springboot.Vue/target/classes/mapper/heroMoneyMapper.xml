@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Springboot.Vue.Mapper.heroMoneyMapper">
+	<resultMap type="com.Springboot.Vue.entity.heroMoney" id="hero">
+		<result property="name" column="name" />
+		<result property="money" column="money" />
+	</resultMap>
+	
+	<update id="updateHeroMoney" parameterType="com.Springboot.Vue.entity.heroMoney">
+		update hero_property set money=#{money} where name = #{name}
+	</update>
+</mapper>
