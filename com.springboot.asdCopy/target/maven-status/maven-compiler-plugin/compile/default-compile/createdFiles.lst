@@ -1,0 +1,8 @@
+com\springboot\asdCopy\Application.class
+com\springboot\asdCopy\controller\robotController.class
+com\springboot\asdCopy\mapper\robotMapper.class
+com\springboot\asdCopy\entity\User.class
+com\springboot\asdCopy\common\JsonResult.class
+com\springboot\asdCopy\controller\UserController.class
+com\springboot\asdCopy\entity\Robot.class
+com\springboot\asdCopy\mapper\UserMapper.class
