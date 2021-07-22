@@ -16,7 +16,7 @@
     "file-saver": "^2.0.2",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.5",
-    "xlsx": "^0.15.1"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
